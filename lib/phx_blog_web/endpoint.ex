@@ -42,5 +42,7 @@ defmodule PhxBlogWeb.Endpoint do
     key: "_phx_blog_key",
     signing_salt: "pZJYHwVM"
 
+  plug Pow.Plug.Session, otp_app: :phx_blog
+
   plug PhxBlogWeb.Router
 end
