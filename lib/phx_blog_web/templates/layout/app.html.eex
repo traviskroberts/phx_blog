@@ -7,31 +7,55 @@
     <title>PhxBlog · Phoenix Framework</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
+
   <body>
-    <header>
-      <section class="container">
-        <nav role="navigation">
-          <%= if Pow.Plug.current_user(@conn) do %>
-            <ul>
-              <li><%= link "Sign out", to: Routes.pow_session_path(@conn, :delete), method: :delete %></li>
-            </ul>
-          <% else %>
-            <ul>
-              <li><%= link "Register", to: Routes.pow_registration_path(@conn, :new) %></li>
-              <li><%= link "Sign in", to: Routes.pow_session_path(@conn, :new) %></li>
-            </ul>
-          <% end %>
-        </nav>
-        <a href="http://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
-      </section>
-    </header>
-    <main role="main" class="container">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-      <%= render @view_module, @view_template, assigns %>
-    </main>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="<%= Routes.page_path(@conn, :index) %>">
+            <img src="/images/logo.png" />
+          </a>
+
+          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div class="navbar-menu">
+          <div class="navbar-end">
+            <%= if Pow.Plug.current_user(@conn) do %>
+              <div class="navbar-item">
+                <%= link "Sign out", to: Routes.pow_session_path(@conn, :delete), method: :delete, class: "button is-danger" %>
+              </div>
+            <% else %>
+              <div class="navbar-item">
+                <div class="buttons">
+                  <%= link "Register", to: Routes.pow_registration_path(@conn, :new), class: "button is-primary" %>
+                  <%= link "Sign in", to: Routes.pow_session_path(@conn, :new), class: "button" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="section">
+      <div class="container">
+        <%= if get_flash(@conn, :info) do %>
+          <div class="notification is-success" role="alert"><%= get_flash(@conn, :info) %></div>
+        <% end %>
+
+        <%= if get_flash(@conn, :error) do %>
+          <div class="notification is-danger" role="alert"><%= get_flash(@conn, :error) %></div>
+        <% end %>
+
+        <%= render @view_module, @view_template, assigns %>
+      </div>
+    </section>
+
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
