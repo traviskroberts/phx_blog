@@ -27,7 +27,8 @@ config :phoenix, :json_library, Jason
 
 config :phx_blog, :pow,
   user: PhxBlog.Users.User,
-  repo: PhxBlog.Repo
+  repo: PhxBlog.Repo,
+  web_module: PhxBlogWeb
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
