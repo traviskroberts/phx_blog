@@ -35,5 +35,7 @@ defmodule PhxBlogWeb.Router do
   # protected routes
   scope "/", PhxBlogWeb do
     pipe_through [:browser, :protected]
+
+    resources "/posts", PostController
   end
 end
