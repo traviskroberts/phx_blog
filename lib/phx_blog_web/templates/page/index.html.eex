@@ -1,4 +1,4 @@
-<section class="hero">
+<section class="hero is-dark is-bold">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
@@ -10,3 +10,12 @@
     </div>
   </div>
 </section>
+
+<ul>
+<%= for post <- @posts do %>
+  <li class="post-link">
+    <span class="post-date"><%= post.publish_date %></span>
+    <span class="post-title"><%= link(post.title, to: Routes.page_path(@conn, :show, post.id, post_slug(post))) %></span>
+  </li>
+<% end %>
+</ul>

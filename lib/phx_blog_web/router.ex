@@ -30,6 +30,7 @@ defmodule PhxBlogWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/blog/:id/:title", PageController, :show
   end
 
   # protected routes

@@ -18,7 +18,7 @@ defmodule PhxBlog.Blog do
 
   """
   def list_posts do
-    Repo.all(Post)
+    Repo.all(from Post, order_by: [desc: :publish_date])
   end
 
   @doc """
