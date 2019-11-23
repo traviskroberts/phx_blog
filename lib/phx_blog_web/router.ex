@@ -31,6 +31,7 @@ defmodule PhxBlogWeb.Router do
 
     get "/", PageController, :index
     get "/blog/:id/:title", PageController, :show
+    resources "/comments", CommentController, only: [:create]
   end
 
   # protected routes

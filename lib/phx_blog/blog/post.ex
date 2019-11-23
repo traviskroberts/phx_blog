@@ -2,10 +2,13 @@ defmodule PhxBlog.Blog.Post do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias PhxBlog.Blog.Comment
+
   schema "posts" do
     field :content, :string
     field :publish_date, :date
     field :title, :string
+    has_many :comments, Comment
 
     timestamps()
   end

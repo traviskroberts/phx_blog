@@ -24,6 +24,11 @@
         </div>
 
         <div class="navbar-menu">
+          <div class="navbar-start">
+            <%= if Pow.Plug.current_user(@conn) do %>
+              <%= link "Posts", to: Routes.post_path(@conn, :index), class: "navbar-item" %>
+            <% end %>
+          </div>
           <div class="navbar-end">
             <%= if Pow.Plug.current_user(@conn) do %>
               <div class="navbar-item">

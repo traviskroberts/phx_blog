@@ -6,8 +6,16 @@ defmodule PhxBlog.BlogTest do
   describe "posts" do
     alias PhxBlog.Blog.Post
 
-    @valid_attrs %{content: "some content", publish_date: "2010-04-17T14:00:00Z", title: "some title"}
-    @update_attrs %{content: "some updated content", publish_date: "2011-05-18T15:01:01Z", title: "some updated title"}
+    @valid_attrs %{
+      content: "some content",
+      publish_date: "2010-04-17T14:00:00Z",
+      title: "some title"
+    }
+    @update_attrs %{
+      content: "some updated content",
+      publish_date: "2011-05-18T15:01:01Z",
+      title: "some updated title"
+    }
     @invalid_attrs %{content: nil, publish_date: nil, title: nil}
 
     def post_fixture(attrs \\ %{}) do

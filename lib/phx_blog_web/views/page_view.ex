@@ -13,8 +13,8 @@ defmodule PhxBlogWeb.PageView do
 
   def slugified_string(str) do
     str
-      |> String.downcase
-      |> String.replace(~r/[^a-z0-9\s-]/, "")
-      |> String.replace(~r/(\s|-)+/, "-")
+    |> String.downcase()
+    |> String.replace(~r/[^a-z0-9\s-]/, "")
+    |> String.replace(~r/(\s|-)+/, "-")
   end
 end

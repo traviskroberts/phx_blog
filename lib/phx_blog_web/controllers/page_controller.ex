@@ -2,6 +2,7 @@ defmodule PhxBlogWeb.PageController do
   use PhxBlogWeb, :controller
 
   alias PhxBlog.Blog
+  alias PhxBlog.Blog.Comment
 
   def index(conn, _params) do
     posts = Blog.list_posts()
@@ -10,6 +11,7 @@ defmodule PhxBlogWeb.PageController do
 
   def show(conn, %{"id" => id}) do
     post = Blog.get_post!(id)
-    render(conn, "show.html", post: post)
+    comment_changeset = Comment.changeset(%Comment{})
+    render(conn, "show.html", post: post, comment_changeset: comment_changeset)
   end
 end
