@@ -4,7 +4,7 @@ defmodule PhxBlog.BlogTest do
   alias PhxBlog.Blog
 
   describe "posts" do
-    alias PhxBlog.Blog.Post
+    alias PhxBlog.Post
 
     @valid_attrs %{
       content: "some content",

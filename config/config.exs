@@ -26,7 +26,7 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 config :phx_blog, :pow,
-  user: PhxBlog.Users.User,
+  user: PhxBlog.User,
   repo: PhxBlog.Repo,
   web_module: PhxBlogWeb
 

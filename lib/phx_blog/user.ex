@@ -1,4 +1,4 @@
-defmodule PhxBlog.Users.User do
+defmodule PhxBlog.User do
   use Ecto.Schema
   use Pow.Ecto.Schema
 

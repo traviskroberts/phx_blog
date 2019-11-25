@@ -6,7 +6,7 @@ defmodule PhxBlog.Blog do
   import Ecto.Query, warn: false
   alias PhxBlog.Repo
 
-  alias PhxBlog.Blog.Post
+  alias PhxBlog.Post
 
   @doc """
   Returns the list of posts.
@@ -104,5 +104,17 @@ defmodule PhxBlog.Blog do
   """
   def change_post(%Post{} = post) do
     Post.changeset(post, %{})
+  end
+
+  def add_comment(%Post{} = post, comment_attrs \\ %{}) do
+    post = get_post!(comment_attrs["post_id"])
+
+    comment_changeset =
+      Ecto.build_assoc(post, :comments,
+        author: comment_attrs["author"],
+        body: comment_attrs["body"]
+      )
+
+    Repo.insert(comment_changeset)
   end
 end

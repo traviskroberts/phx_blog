@@ -4,7 +4,7 @@
   <div class="field">
     <%= label f, :author, class: "label" %>
     <div class="control">
-      <%= text_input f, :author, class: "input is-medium" %>
+      <%= text_input f, :author, class: "input" %>
     </div>
     <%= error_tag f, :author %>
   </div>
@@ -12,7 +12,7 @@
   <div class="field">
     <%= label f, :body, class: "label" %>
     <div class="control">
-      <%= textarea f, :body, class: "input is-medium" %>
+      <%= textarea f, :body, class: "textarea", rows: 3 %>
     </div>
     <%= error_tag f, :body %>
   </div>
