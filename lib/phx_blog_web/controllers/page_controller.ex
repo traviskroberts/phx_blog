@@ -1,7 +1,8 @@
 defmodule PhxBlogWeb.PageController do
   use PhxBlogWeb, :controller
 
-  alias PhxBlog.{Blog, Comment}
+  alias PhxBlog.Blog
+  alias PhxBlog.Blog.Comment
 
   def index(conn, _params) do
     posts = Blog.list_posts()

@@ -1,8 +1,8 @@
-defmodule PhxBlog.Comment do
+defmodule PhxBlog.Blog.Comment do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias PhxBlog.Post
+  alias PhxBlog.Blog.Post
 
   schema "comments" do
     field :author, :string

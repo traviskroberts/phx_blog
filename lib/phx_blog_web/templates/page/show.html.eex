@@ -5,13 +5,6 @@
 
   <%= as_html(@post.content) %>
 
-  <h2>Comments</h2>
-  <%= for comment <- @post.comments do %>
-    <p>
-      <strong><%= comment.author %></strong>
-    </p>
-    <p><%= comment.body %></p>
-  <% end %>
-
   <%= render PhxBlogWeb.CommentView, "new.html", conn: @conn, post: @post, comment_changeset: @comment_changeset %>
+  <%= live_render(@conn, PhxBlogWeb.CommentsLive, session: %{post_id: @post.id}) %>
 </div>
