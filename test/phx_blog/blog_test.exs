@@ -2,10 +2,9 @@ defmodule PhxBlog.BlogTest do
   use PhxBlog.DataCase
 
   alias PhxBlog.Blog
+  alias PhxBlog.Blog.Post
 
   describe "posts" do
-    alias PhxBlog.Post
-
     @valid_attrs %{
       content: "some content",
       publish_date: "2010-04-17T14:00:00Z",
@@ -34,13 +33,13 @@ defmodule PhxBlog.BlogTest do
 
     test "get_post!/1 returns the post with given id" do
       post = post_fixture()
-      assert Blog.get_post!(post.id) == post
+      assert Blog.get_post!(post.id) == Repo.preload(post, :comments)
     end
 
     test "create_post/1 with valid data creates a post" do
       assert {:ok, %Post{} = post} = Blog.create_post(@valid_attrs)
       assert post.content == "some content"
-      assert post.publish_date == DateTime.from_naive!(~N[2010-04-17T14:00:00Z], "Etc/UTC")
+      assert post.publish_date == ~D[2010-04-17]
       assert post.title == "some title"
     end
 
@@ -52,14 +51,14 @@ defmodule PhxBlog.BlogTest do
       post = post_fixture()
       assert {:ok, %Post{} = post} = Blog.update_post(post, @update_attrs)
       assert post.content == "some updated content"
-      assert post.publish_date == DateTime.from_naive!(~N[2011-05-18T15:01:01Z], "Etc/UTC")
+      assert post.publish_date == ~D[2011-05-18]
       assert post.title == "some updated title"
     end
 
     test "update_post/2 with invalid data returns error changeset" do
       post = post_fixture()
       assert {:error, %Ecto.Changeset{}} = Blog.update_post(post, @invalid_attrs)
-      assert post == Blog.get_post!(post.id)
+      assert Repo.preload(post, :comments) == Blog.get_post!(post.id)
     end
 
     test "delete_post/1 deletes the post" do

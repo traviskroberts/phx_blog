@@ -45,7 +45,8 @@ defmodule PhxBlog.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:pow, "~> 1.0.13"},
       {:earmark, "~> 1.4"},
-      {:phoenix_live_view, "~> 0.4.0"}
+      {:phoenix_live_view, "~> 0.4.0"},
+      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false}
     ]
   end
 
