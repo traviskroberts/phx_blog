@@ -12,7 +12,6 @@ defmodule PhxBlog.Blog.Comment do
     timestamps()
   end
 
-  @doc false
   def changeset(comment, attrs \\ %{}) do
     comment
     |> cast(attrs, [:author, :body, :post_id])

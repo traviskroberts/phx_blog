@@ -13,7 +13,6 @@ defmodule PhxBlog.Blog.Post do
     timestamps()
   end
 
-  @doc false
   def changeset(post, attrs) do
     post
     |> cast(attrs, [:title, :content, :publish_date])
