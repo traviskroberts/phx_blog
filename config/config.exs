@@ -7,6 +7,15 @@
 # General application configuration
 use Mix.Config
 
+# Configure esbuild (the version is required)
+config :esbuild,
+  version: "0.12.18",
+  default: [
+    args: ~w(js/app.js --bundle --target=es2016 --outdir=../priv/static/assets),
+    cd: Path.expand("../assets", __DIR__),
+    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  ]
+
 config :phx_blog,
   ecto_repos: [PhxBlog.Repo]
 
@@ -15,7 +24,7 @@ config :phx_blog, PhxBlogWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "RtVy+bkaw7tdYFeVgLt/xBUT1mA1UhjAfnUf3JDCtTgH3kE16x6JaZBjRG7bVmZS",
   render_errors: [view: PhxBlogWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: PhxBlog.PubSub, adapter: Phoenix.PubSub.PG2],
+  pubsub_server: PhxBlog.PubSub,
   live_view: [
     signing_salt: "Hp7Cg7V7m3hJYlT6lB6XAlHyq2HYlmx1"
   ]

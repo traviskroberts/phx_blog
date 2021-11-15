@@ -6,6 +6,8 @@ defmodule PhxBlog.Application do
     children = [
       # Start the Ecto repository
       PhxBlog.Repo,
+      # Start the PubSub system
+      {Phoenix.PubSub, name: PhxBlog.PubSub},
       # Start the endpoint when the application starts
       PhxBlogWeb.Endpoint
       # Starts a worker by calling: PhxBlog.Worker.start_link(arg)

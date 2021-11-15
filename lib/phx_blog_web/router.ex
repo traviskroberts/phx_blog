@@ -1,12 +1,13 @@
 defmodule PhxBlogWeb.Router do
   use PhxBlogWeb, :router
   use Pow.Phoenix.Router
+  import Phoenix.LiveDashboard.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
-    plug Phoenix.LiveView.Flash
+    plug :fetch_live_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -40,5 +41,13 @@ defmodule PhxBlogWeb.Router do
     pipe_through [:browser, :protected]
 
     resources "/posts", PostController
+  end
+
+  # LiveDashboard
+  if Mix.env() == :dev do
+    scope "/" do
+      pipe_through :browser
+      live_dashboard "/dashboard"
+    end
   end
 end

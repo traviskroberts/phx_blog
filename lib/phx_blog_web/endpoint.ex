@@ -1,11 +1,17 @@
 defmodule PhxBlogWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :phx_blog
 
+  @session_options [
+    store: :cookie,
+    key: "_phx_blog_key",
+    signing_salt: "pZJYHwVM"
+  ]
+
   socket "/socket", PhxBlogWeb.UserSocket,
     websocket: true,
     longpoll: false
 
-  socket "/live", Phoenix.LiveView.Socket
+  socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -15,7 +21,7 @@ defmodule PhxBlogWeb.Endpoint do
     at: "/",
     from: :phx_blog,
     gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    only: ~w(assets fonts images favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -39,10 +45,7 @@ defmodule PhxBlogWeb.Endpoint do
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
-  plug Plug.Session,
-    store: :cookie,
-    key: "_phx_blog_key",
-    signing_salt: "pZJYHwVM"
+  plug Plug.Session, @session_options
 
   plug Pow.Plug.Session, otp_app: :phx_blog
 
